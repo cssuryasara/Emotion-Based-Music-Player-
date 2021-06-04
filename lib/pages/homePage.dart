@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
+import 'package:spotifyclone/widgets/homepageTopWidget.dart';
+import 'package:spotifyclone/widgets/recentlyPlayedWidget.dart';
+import 'package:spotifyclone/widgets/recommendedWidget.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -21,243 +24,67 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Good ${greeting()}',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 3.5,
-                    child: GridView.count(
-                      physics: NeverScrollableScrollPhysics(),
-                      childAspectRatio: 3 / 1,
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                      children: List.generate(
-                        6,
-                        (index) => Container(
-                          color: Colors.black38,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: CachedNetworkImage(
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      new Icon(Icons.error),
-                                  imageUrl:
-                                      "https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-                                  imageBuilder: (context, imageProvider) {
-                                    // you can access to imageProvider
-                                    return Container(
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: imageProvider,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Padding(
-                                  padding: EdgeInsets.all(4),
-                                  child: Text('NAME'),
-                                ),
-                              ),
-                            ],
-                          ),
+            Container(
+              height: double.infinity,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Good ${greeting()}',
+                      style:
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      child: GridView.count(
+                        physics: NeverScrollableScrollPhysics(),
+                        childAspectRatio: 3 / 1,
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                        children: List.generate(
+                          6,
+                          (index) => homePageTopWidget(),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    'Recently Played',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 6,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) => Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Container(
-                          width: 120,
-                          child: Column(
-                            crossAxisAlignment: index % 2 == 0
-                                ? CrossAxisAlignment.center
-                                : CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: CachedNetworkImage(
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      new Icon(Icons.error),
-                                  imageUrl:
-                                      "https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-                                  imageBuilder: (context, imageProvider) {
-                                    // you can access to imageProvider
-                                    return Container(
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: imageProvider,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                              Text(
-                                'sdhghjsg',
-                              )
-                            ],
-                          ),
+                    Text(
+                      'Recently Played',
+                      style:
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 6,
+                      child: ListView.builder(
+                        itemCount: 10,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) =>
+                            Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: recentlyPlayedWidget(),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    'Recommended',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 6,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) => Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Container(
-                          width: 120,
-                          child: Column(
-                            crossAxisAlignment: index % 2 == 0
-                                ? CrossAxisAlignment.center
-                                : CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: index % 2 == 0
-                                        ? BorderRadius.circular(500)
-                                        : BorderRadius.circular(0),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      alignment: Alignment.center,
-                                      image: NetworkImage(
-                                        'https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'sdhghjsg',
-                              )
-                            ],
-                          ),
+                    Text(
+                      'Recommended',
+                      style:
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 6,
+                      child: ListView.builder(
+                        itemCount: 10,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) =>
+                            Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: recommendedWidget(index),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    'Recommended',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 6,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) => Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Container(
-                          width: 120,
-                          child: Column(
-                            crossAxisAlignment: index % 2 == 0
-                                ? CrossAxisAlignment.center
-                                : CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: index % 2 == 0
-                                        ? BorderRadius.circular(500)
-                                        : BorderRadius.circular(0),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      alignment: Alignment.center,
-                                      image: NetworkImage(
-                                        'https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'sdhghjsg',
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    'Recommended',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 6,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) => Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: Container(
-                          width: 120,
-                          child: Column(
-                            crossAxisAlignment: index % 2 == 0
-                                ? CrossAxisAlignment.center
-                                : CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: index % 2 == 0
-                                        ? BorderRadius.circular(500)
-                                        : BorderRadius.circular(0),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      alignment: Alignment.center,
-                                      image: NetworkImage(
-                                        'https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'sdhghjsg',
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Positioned(
@@ -273,25 +100,25 @@ class HomePage extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: CachedNetworkImage(
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      new Icon(Icons.error),
-                                  imageUrl:
-                                      "https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-                                  imageBuilder: (context, imageProvider) {
-                                    // you can access to imageProvider
-                                    return Container(
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: imageProvider,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) =>
+                            new Icon(Icons.error),
+                        imageUrl:
+                            "https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
+                        imageBuilder: (context, imageProvider) {
+                          // you can access to imageProvider
+                          return Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: imageProvider,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     Expanded(
                       flex: 3,
@@ -327,4 +154,5 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
 }
