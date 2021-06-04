@@ -6,19 +6,37 @@ class PredictionPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
-            tabs: [
-              Text("MODEL"),
-              Text("RANDOM"),
-            ],
-          ),
-          title: Text('Tabs Demo'),
-        ),
-        body: TabBarView(
+        body: Stack(
           children: [
-            Icon(Icons.flight, size: 350),
-            Icon(Icons.directions_transit, size: 350),
+            TabBarView(
+              children: [
+                Icon(Icons.flight, size: 350),
+                Icon(Icons.directions_transit, size: 350),
+              ],
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+                child: TabBar(
+                  tabs: [
+                    Center(
+                      child: Text(
+                        "MODEL",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        "RANDOM",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
