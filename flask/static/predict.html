@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>deeplizard predict image app</title>
+    <style>
+      * {
+        font-size: 30px;
+      }
+    </style>
+    <body>
+      <input id="image-selector" type="file" />
+      <button id="predict-button">Predict</button>
+      <p style="font-weight: bold">Predictions</p>
+      <p>PREDICTION: <span id="prediction"></span></p>
+      <img id="selected-image" src="" height="500" width="500" />
+    </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      let base64Image;
+      $('#image-selector').change(function () {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+          let dataURL = reader.result;
+          $('#selected-image').attr('src', dataURL);
+          base64Image = dataURL.replace('data:image/jpeg;base64,', '');
+          console.log(base64Image);
+        };
+        reader.readAsDataURL($('#image-selector')[0].files[0]);
+        $('#prediction').text('');
+      });
+
+      $('#predict-button').click(function () {
+        console.log(base64Image);
+        let message = {
+          image: base64Image,
+        };
+        $.post(
+          'http://192.168.1.141:5000/predict',
+          JSON.stringify(message),
+          function (response) {
+            console.log(response);
+            $('#prediction').text(response);
+            // $('#cat-prediction').text(response.prediction.cat.toFixed(6));
+          }
+        );
+      });
+    </script>
+  </head>
+</html>
