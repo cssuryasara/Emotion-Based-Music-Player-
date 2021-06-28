@@ -1,0 +1,110 @@
+.predict {
+  display: flex;
+  flex-direction: column;
+
+  background-image: url('./predictMain.png') !important;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+.angry {
+  background-image: url('./angry.png') !important;
+}
+.happy {
+  background-image: url('./happy.png') !important;
+}
+.disgust {
+  background-image: url('./disgust.png') !important;
+}
+.fear {
+  background-image: url('./fearful.png') !important;
+}
+.sad {
+  background-image: url('./sad.png') !important;
+}
+.surprise {
+  background-image: url('./surprise.png') !important;
+}
+.neutral {
+  background-image: url('./neutral.png') !important;
+}
+.predict__image {
+  border-radius: 30px !important;
+  object-fit: cover;
+  /* box-shadow: 0 8px 16px 5px rgba(0,0,0,0.4);
+   */
+  border: 10px solid black;
+}
+.predict__imageContainer {
+  position: relative;
+}
+.imageCapture__inputfile {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+  }
+.RefershIcon {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  font-size: 25px !important;
+  border-radius: 30px;
+  right: 0;
+  top: 0;
+  margin: 20px;
+  color: white !important;
+  transition: transform 0.5s;
+}
+.RefershIcon:hover{
+    transform: scale(1.1);
+
+}
+h3 {
+  position: absolute;
+  bottom: 0;
+  margin: 25px;
+  font-size: 30px !important;
+  right: 0;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  color: black;
+  color: white;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 10px;
+}
+.predict__buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* background-color: #191414; */
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.predict__button {
+  display: flex;
+  align-items: center;
+  margin-top: 15px !important;
+  margin-left: 10px !important;
+  margin-right: 50px !important;
+  background-color: black !important;
+  margin-bottom: 15px !important;
+  color: white !important;
+  cursor: pointer;
+  padding: 15px 25px !important;
+  border-radius: 18px !important;
+  border: white solid 1px;
+  box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
+  transition: transform 0.5s ease;
+}
+.predict__button:hover {
+  transform: scale(1.1);
+}
+.predictlogo {
+  color: white;
+  height: 30px;
+  margin-right: 10px;
+}
