@@ -24,6 +24,8 @@ export const cameraSlice = createSlice ({
     },
     resetpredictedValue: state => {
       state.predictedValue = null;
+      state.emotionCSSClass = '';
+
     },
     setPredictedValue: (state, action) => {
       state.predictedValue = action.payload;
