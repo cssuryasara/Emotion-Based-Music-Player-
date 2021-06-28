@@ -1,7 +1,7 @@
 import React, {useCallback, useRef} from 'react';
 import Webcam from 'react-webcam';
 import CameraIcon from '@material-ui/icons/Camera';
-import {setCameraImage, setPictureTaken} from './features/CameraSlice';
+import {setCameraImage, setPictureTaken} from '../../features/CameraSlice';
 import {useDispatch} from 'react-redux';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 

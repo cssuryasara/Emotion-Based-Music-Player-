@@ -2,31 +2,31 @@
   display: flex;
   flex-direction: column;
 
-  background-image: url('./predictMain.png') !important;
+  background-image: url('../../img/predictMain.png') !important;
   align-items: center;
   justify-content: space-evenly;
   height: 100vh;
 }
 .angry {
-  background-image: url('./angry.png') !important;
+  background-image: url('../../img/angry.png') !important;
 }
 .happy {
-  background-image: url('./happy.png') !important;
+  background-image: url('../../img/happy.png') !important;
 }
 .disgust {
-  background-image: url('./disgust.png') !important;
+  background-image: url('../../img/disgust.png') !important;
 }
 .fear {
-  background-image: url('./fearful.png') !important;
+  background-image: url('../../img/fearful.png') !important;
 }
 .sad {
-  background-image: url('./sad.png') !important;
+  background-image: url('../../img/sad.png') !important;
 }
 .surprise {
-  background-image: url('./surprise.png') !important;
+  background-image: url('../../img/surprise.png') !important;
 }
 .neutral {
-  background-image: url('./neutral.png') !important;
+  background-image: url('../../img/neutral.png') !important;
 }
 .predict__image {
   border-radius: 30px !important;
