@@ -42,7 +42,7 @@ function Predict () {
       image: image,
     };
     axios
-      .post (' http://192.168.1.141:5000/predict', JSON.stringify (message))
+      .post ('http://192.168.43.133:5000/predict', JSON.stringify (message))
       .then (data => {
         console.log (data.data);
         if (data.data.status === 500) {
