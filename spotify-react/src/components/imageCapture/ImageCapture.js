@@ -1,16 +1,18 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import Webcam from 'react-webcam';
 import CameraIcon from '@material-ui/icons/Camera';
 import {setCameraImage, setPictureTaken} from '../../features/CameraSlice';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 import './ImageCapture.css';
 import {useHistory} from 'react-router';
+import {selectUser} from '../../features/appSlice';
 
 function ImageCapture () {
   const dispatch = useDispatch ();
   const history = useHistory ();
+  const user = useSelector (selectUser);
 
   const hiddenFileInput = useRef (null);
 
@@ -25,6 +27,11 @@ function ImageCapture () {
     facingMode: 'user',
   };
 
+  useEffect (() => {
+    if (!user) {
+      history.replace ('./');
+    }
+  }, []);
   const capture = useCallback (
     () => {
       const imageSource = webCamRef.current.getScreenshot ();
@@ -57,7 +64,6 @@ function ImageCapture () {
     nextPage (base64);
   };
 
-  
   return (
     <div className="imageCapture">
       <div className="imageCapture__webCam">
@@ -67,7 +73,7 @@ function ImageCapture () {
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
         />
-       
+
       </div>
       <div className="imageCapture__buttons">
         <div onClick={capture} className="imageCapture__captureButton">

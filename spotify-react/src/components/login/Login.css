@@ -1,0 +1,14 @@
+.login {
+  display: flex;
+  /* background-color: #191414; */
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.login__button{
+  background-color: #1ED760 !important;
+  font-weight: bolder !important;
+  color: white !important;
+  /* font-size: large !important; */
+}
