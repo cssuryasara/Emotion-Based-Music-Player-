@@ -7,16 +7,19 @@ import Predict from './components/predict/Predict';
 import './App.css';
 
 import Login from './components/login/Login';
-import Search from './components/search/Search';
 import Navbarr from './components/navbar/Navbarr';
 import {useSelector} from 'react-redux';
-import {selectUser} from './features/appSlice';
+import {selectaccessToken, selectplayingSong, selectUser} from './features/appSlice';
 import Home from './components/home/Home';
+import Player from './components/player/Player';
 
 const code = new URLSearchParams (window.location.search).get ('code');
 
 function App () {
   const user = useSelector (selectUser);
+  const accessToken=useSelector(selectaccessToken)
+  const playingSong=useSelector(selectplayingSong)
+
   return (
     <Router>
       {user ? <Navbarr /> : null}
@@ -38,6 +41,9 @@ function App () {
 
           </Route>
         </Switch>
+      </div>
+      <div className="songplayer">
+        <Player accessToken={accessToken} trackUri={playingSong?.uri} />
       </div>
     </Router>
   );

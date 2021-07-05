@@ -22,27 +22,35 @@
   border-top-right-radius: 12px;
   object-fit: contain;
 }
+ h3:first-child{
+  margin-top: 70px !important;
+
+}
 .home__recentlyPlayed {
   display: flex;
   align-items: center;
-  margin-top: 70px;
   justify-content: space-between;
   overflow-x: scroll !important;
 }
-.home__newRelease {
+.home__newRelease ,
+.home__savedTracks{
   display: flex;
   align-items: center;
 
   /* justify-content: space-between; */
   overflow-x: scroll !important;
 }
+.home__savedTracks{
+  margin-bottom: 50px;
+}
+
 .home__recentlyPlayed::-webkit-scrollbar,
-.home__newRelease::-webkit-scrollbar {
+.home__newRelease::-webkit-scrollbar,.home__savedTracks::-webkit-scrollbar {
   display: none !important;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
 .home__recentlyPlayed,
-.home__newRelease {
+.home__newRelease ,.home__savedTracks{
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }

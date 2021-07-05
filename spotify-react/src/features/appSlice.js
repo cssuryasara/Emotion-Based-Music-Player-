@@ -2,20 +2,32 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   user: null,
-  openSearch:false
+  openSearch: false,
+  playingSong: null,
+  accessToken: null,
+  reload: true,
 };
 
 export const appSlice = createSlice ({
   name: 'app',
   initialState,
   reducers: {
-    loginuser: (state,action) => {
+    loginuser: (state, action) => {
       state.user = action.payload;
     },
-    setSearch:state => {
+    setPlayingSong: (state, action) => {
+      state.playingSong = action.payload;
+    },
+    setaccessToken: (state, action) => {
+      state.accessToken = action.payload;
+    },
+    setReload: state => {
+      state.reload = false;
+    },
+    setSearch: state => {
       state.openSearch = true;
     },
-    setHome:state => {
+    setHome: state => {
       state.openSearch = false;
     },
     removeuser: state => {
@@ -24,11 +36,21 @@ export const appSlice = createSlice ({
   },
 });
 
-export const {loginuser, removeuser,setSearch,setHome} = appSlice.actions;
+export const {
+  loginuser,
+  removeuser,
+  setSearch,
+  setaccessToken,
+  setHome,
+  setPlayingSong,
+  setReload,
+} = appSlice.actions;
 
 export const selectUser = state => state.app.user;
 export const selectopenSearch = state => state.app.openSearch;
-
+export const selectplayingSong = state => state.app.playingSong;
+export const selectaccessToken = state => state.app.accessToken;
+export const selectreload = state => state.app.reload;
 
 
 export default appSlice.reducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {setSearch, selectUser,setHome} from '../../features/appSlice';
+import {setSearch, selectUser, setHome} from '../../features/appSlice';
 import {useHistory} from 'react-router';
 import {Avatar} from '@material-ui/core';
 function Navbarr () {
@@ -26,14 +26,18 @@ function Navbarr () {
           />
         </svg>
       </a>
-      <a onClick={() => {
-        // history.replace ('/')
-        dispatch (setHome());
-      }}> Home</a>
       <a
         onClick={() => {
-          history.replace ('/');
-          dispatch (setSearch());
+          history.push ('/home');
+          dispatch (setHome ());
+        }}
+      >
+        {' '}Home
+      </a>
+      <a
+        onClick={() => {
+          history.push ('/home');
+          dispatch (setSearch ());
         }}
       >
         {' '}search
