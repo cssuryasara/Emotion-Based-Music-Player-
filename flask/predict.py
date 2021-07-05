@@ -2,11 +2,6 @@
 import base64
 import numpy as np
 import io
-<<<<<<< HEAD
-#from PIL import Image
-=======
-# from PIL import Image
->>>>>>> da9f4acbe5f5329db4f15ce0e20b955daeaea7a2
 from deepface import DeepFace
 import json
 import time

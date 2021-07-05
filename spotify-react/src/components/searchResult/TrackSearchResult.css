@@ -1,0 +1,14 @@
+.trackSearchResult {
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  align-items: center;
+  border-bottom: 1px solid whitesmoke;
+}
+.trackSearchResult > img {
+  margin-right: 10px;
+}
+
+.ml-3 > .text-muted {
+  font-weight: 300;
+}

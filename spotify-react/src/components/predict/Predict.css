@@ -1,102 +1,114 @@
 .predict {
   display: flex;
-  flex-direction: column;
-
+  flex-direction: row;
+  overflow: hidden !important;
   background-image: url('../../img/predictMain.png') !important;
+  background-repeat: repeat-x !important;
+
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-between; */
   height: 100vh;
 }
 .angry {
   background-image: url('../../img/angry.png') !important;
+  background-repeat: repeat-x !important;
 }
 .happy {
   background-image: url('../../img/happy.png') !important;
+  background-repeat: repeat-x !important;
 }
 .disgust {
   background-image: url('../../img/disgust.png') !important;
+  background-repeat: repeat-x !important;
 }
 .fear {
   background-image: url('../../img/fearful.png') !important;
+  background-repeat: repeat-x !important;
 }
 .sad {
   background-image: url('../../img/sad.png') !important;
+  background-repeat: repeat-x !important;
 }
 .surprise {
   background-image: url('../../img/surprise.png') !important;
+  background-repeat: repeat-x !important;
 }
 .neutral {
   background-image: url('../../img/neutral.png') !important;
+  background-repeat: repeat-x !important;
 }
 .predict__image {
+  position: relative;
+}
+
+.predict__image > img {
   border-radius: 30px !important;
   object-fit: cover;
-  /* box-shadow: 0 8px 16px 5px rgba(0,0,0,0.4);
-   */
+
+  margin: 30px;
+
   border: 10px solid black;
 }
 .predict__imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
+  flex: 0.7;
 }
 .imageCapture__inputfile {
-    opacity: 0;
-    width: 0.1px;
-    height: 0.1px;
-    position: absolute;
-  }
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
 .RefershIcon {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.75);
   padding: 10px;
-  font-size: 25px !important;
+  font-size: 20px !important;
   border-radius: 30px;
   right: 0;
   top: 0;
-  margin: 20px;
+  margin: 50px;
   color: white !important;
   transition: transform 0.5s;
 }
-.RefershIcon:hover{
-    transform: scale(1.1);
-
+.RefershIcon:hover {
+  transform: scale(1.1);
 }
-h3 {
+.predict__image > h3 {
   position: absolute;
   bottom: 0;
-  margin: 25px;
+  margin: 55px;
   font-size: 30px !important;
   right: 0;
   background: rgba(255, 255, 255, 0.75);
-  border-radius: 10px;
+  border-radius: 14px;
   color: black;
   color: white;
   background: rgba(0, 0, 0, 0.75);
   padding: 10px;
 }
 .predict__buttons {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  /* background-color: #191414; */
+  flex: 0.3;
   display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 100vh;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 10px;
 }
 .predict__button {
   display: flex;
   align-items: center;
-  margin-top: 15px !important;
-  margin-left: 10px !important;
-  margin-right: 50px !important;
+
   background-color: black !important;
-  margin-bottom: 15px !important;
   color: white !important;
   cursor: pointer;
   padding: 15px 25px !important;
   border-radius: 18px !important;
-  border: white solid 1px;
   box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.75);
   transition: transform 0.5s ease;
 }
