@@ -3,30 +3,39 @@
   flex-direction: row;
   overflow: hidden !important;
   background-image: url('../../img/predictMain.png') !important;
+  background-repeat: repeat-x !important;
+
   align-items: center;
   /* justify-content: space-between; */
   height: 100vh;
 }
 .angry {
   background-image: url('../../img/angry.png') !important;
+  background-repeat: repeat-x !important;
 }
 .happy {
   background-image: url('../../img/happy.png') !important;
+  background-repeat: repeat-x !important;
 }
 .disgust {
   background-image: url('../../img/disgust.png') !important;
+  background-repeat: repeat-x !important;
 }
 .fear {
   background-image: url('../../img/fearful.png') !important;
+  background-repeat: repeat-x !important;
 }
 .sad {
   background-image: url('../../img/sad.png') !important;
+  background-repeat: repeat-x !important;
 }
 .surprise {
   background-image: url('../../img/surprise.png') !important;
+  background-repeat: repeat-x !important;
 }
 .neutral {
   background-image: url('../../img/neutral.png') !important;
+  background-repeat: repeat-x !important;
 }
 .predict__image {
   position: relative;
@@ -68,7 +77,7 @@
 .RefershIcon:hover {
   transform: scale(1.1);
 }
-.predict__image>h3 {
+.predict__image > h3 {
   position: absolute;
   bottom: 0;
   margin: 55px;
@@ -94,7 +103,7 @@
 .predict__button {
   display: flex;
   align-items: center;
-  
+
   background-color: black !important;
   color: white !important;
   cursor: pointer;

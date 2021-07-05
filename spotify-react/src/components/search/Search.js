@@ -1,31 +1,77 @@
-// import { useState, useEffect } from "react"
-// import useAuth from "../../useAuth"
+import React, {useEffect} from 'react';
+import SearchIcon from '@material-ui/icons/Search';
+import TrackSearchResult from '../searchResult/TrackSearchResult';
+import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectaccessToken, setPlayingSong} from '../../features/appSlice';
+import '../home/Home.css';
+import '../search/Search.css'
 
-// import SpotifyWebApi from "spotify-web-api-node"
-// // import axios from "axios"
+function Search ({spotifyApi}) {
+  const dispatch = useDispatch ();
+  const [search, setSearch] = useState ('');
+  const [searchResults, setSearchResults] = useState ([]);
 
-// import {loginuser} from '../../features/appSlice';
-// import {useDispatch} from 'react-redux';
-// const spotifyApi = new SpotifyWebApi({
-//   clientId: "ed876f89ac4b48528b050cf012707391",
-// })
+  const accessToken = useSelector (selectaccessToken);
+  useEffect (
+    () => {
+      if (!search) return setSearchResults ([]);
+      if (!accessToken) return;
 
-// export default function Search({ code }) {
-// const dispatch = useDispatch ();
+      let cancel = false;
+      spotifyApi.searchTracks (search).then (res => {
+        if (cancel) return;
+        setSearchResults (
+          res.body.tracks.items.map (track => {
+            const smallestAlbumImage = track.album.images.reduce (
+              (smallest, image) => {
+                if (image.height < smallest.height) return image;
+                return image;
+              },
+              track.album.images[0]
+            );
+            return {
+              artist: track.artists[0].name,
+              title: track.name,
+              uri: track.uri,
+              albumUrl: smallestAlbumImage.url,
+            };
+          })
+        );
+      });
 
-//   const accessToken = useAuth(code)
- 
+      return () => (cancel = true);
+    },
+    [search, accessToken]
+  );
+  function chooseTrack (track) {
+    console.log (track);
+    dispatch (setPlayingSong (track));
+    setSearch ('');
+  }
+  return (
+    <div className="dashBoard">
+      <div className="header__middle">
+        <SearchIcon />
+        <input
+          type="search"
+          placeholder="Search Songs/Artists"
+          value={search}
+          onChange={e => setSearch (e.target.value)}
+        />
+        {/* <input placeholder="Search mail" type="text"/> */}
+      </div>
+      <div className="searchlist" style={{overflowY: 'auto'}}>
+        {searchResults.map (track => (
+          <TrackSearchResult
+            track={track}
+            key={track.uri}
+            chooseTrack={chooseTrack}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
-  
-
- 
-// // 
- 
-
- 
-
-//   return (
-
-   
-//   )
-// }
+export default Search;
