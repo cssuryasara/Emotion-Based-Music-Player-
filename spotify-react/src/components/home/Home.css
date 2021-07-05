@@ -1,0 +1,48 @@
+.home {
+  margin: 15px;
+}
+.home_songs {
+  height: 225px !important;
+  width: 225px !important;
+  display: flex;
+  margin: 15px;
+  align-items: center;
+  flex-direction: column;
+  border: solid whitesmoke 1px;
+  border-radius: 12px;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  justify-content: start;
+}
+.home_songs > img {
+  height: 175px;
+  width: 175px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  object-fit: contain;
+}
+.home__recentlyPlayed {
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+  justify-content: space-between;
+  overflow-x: scroll !important;
+}
+.home__newRelease {
+  display: flex;
+  align-items: center;
+
+  /* justify-content: space-between; */
+  overflow-x: scroll !important;
+}
+.home__recentlyPlayed::-webkit-scrollbar,
+.home__newRelease::-webkit-scrollbar {
+  display: none !important;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.home__recentlyPlayed,
+.home__newRelease {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

@@ -17,9 +17,11 @@ export default function useAuth (code) {
           setRefreshToken (res.data.refreshToken);
           setExpiresIn (res.data.expiresIn);
           window.history.pushState ({}, null, '/');
+
+       
         })
         .catch (error => {
-          window.location = "/"
+          window.location = '/';
           console.log (error);
         });
     },

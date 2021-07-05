@@ -1,8 +1,7 @@
-
 import base64
 import numpy as np
 import io
-# from PIL import Image
+from PIL import Image
 from deepface import DeepFace
 import json
 import time

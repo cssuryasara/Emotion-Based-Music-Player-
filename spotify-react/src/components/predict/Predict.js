@@ -42,7 +42,7 @@ function Predict () {
       image: image,
     };
     axios
-      .post (' http://192.168.1.141:5000/predict', JSON.stringify (message))
+      .post (' http://localhost:5000/predict', JSON.stringify (message))
       .then (data => {
         console.log (data.data);
         if (data.data.status === 500) {
@@ -86,8 +86,8 @@ function Predict () {
     <div className={`predict ${emotionCSSClass}`}>
       <div className="predict__imageContainer">
         <img
-          height="480"
-          width="640"
+          height="437"
+          width="583"
           src={cameraImage}
           className="predict__image"
           alt=""

@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counterSlice';
+import appReducer from '../features/appSlice';
 import cameraReducer from '../features/CameraSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    app: appReducer,
     camera:cameraReducer
   },
 });
