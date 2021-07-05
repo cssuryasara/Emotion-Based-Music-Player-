@@ -2,7 +2,11 @@
 import base64
 import numpy as np
 import io
+<<<<<<< HEAD
 #from PIL import Image
+=======
+# from PIL import Image
+>>>>>>> da9f4acbe5f5329db4f15ce0e20b955daeaea7a2
 from deepface import DeepFace
 import json
 import time
@@ -39,23 +43,25 @@ cors = CORS(app, resources={
 print("loading model")
 #get_model()
 
+
 @app.errorhandler(500)
 def handle_another_exception(error):
     '''Return a custom message and 500 status code'''
     # print(error.specific)
-    message={'predictedValue': "Face Not Found In Image",'status':500,'cssClass':''}
+    message = {'predictedValue': "Face Not Found In Image",
+               'status': 500, 'cssClass': ''}
     return message
 
 
 @app.route('/predict', methods=["POST"])
 def predict():
     emojiDict = {'angry': "\U0001F620",
-             'disgust': "\U0001F922",
-             'fear': "\U0001F628",
-             'happy': "\U0001F603",
-             'sad': "\U0001F614",
-             'surprise': "\U0001F632 ",
-             'neutral': "\U0001F610 ", }
+                 'disgust': "\U0001F922",
+                 'fear': "\U0001F628",
+                 'happy': "\U0001F603",
+                 'sad': "\U0001F614",
+                 'surprise': "\U0001F632 ",
+                 'neutral': "\U0001F610 ", }
     classes = np.array(("Angry", "Disgust", "Fear", "Happy",
                        "Sad", "Surprise", "Neutral"))
     start = time.time()
@@ -82,7 +88,6 @@ def predict():
     end = time.time()
     print(end-start)
     print(emojiDict[result] + str(result).capitalize())
-    message={'predictedValue': emojiDict[result] + str(result).capitalize(),'status':200,'cssClass':result}
+    message = {'predictedValue': emojiDict[result] + str(
+        result).capitalize(), 'status': 200, 'cssClass': result}
     return message
-
-

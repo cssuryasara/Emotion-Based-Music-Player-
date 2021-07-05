@@ -15,7 +15,12 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-webcam": "^5.2.4"
+    "react-webcam": "^5.2.4",
+    "bootstrap": "^4.6.0",
+    "react-bootstrap": "^1.5.0",
+    "react-spotify-web-playback": "^0.8.1",
+    "spotify-web-api-node": "^5.0.2",
+    "web-vitals": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
