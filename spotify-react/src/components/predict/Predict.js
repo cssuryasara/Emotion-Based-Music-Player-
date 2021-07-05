@@ -17,6 +17,8 @@ import {
 } from '../../features/CameraSlice';
 import './Predict.css';
 import RefreshIcon from '@material-ui/icons/Refresh';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import MusicNoteOutlinedIcon from '@material-ui/icons/MusicNoteOutlined';
 function Predict () {
   const cameraImage = useSelector (selectCameraImage);
   const prediction = useSelector (SelectPredictedValue);
@@ -85,23 +87,26 @@ function Predict () {
   return (
     <div className={`predict ${emotionCSSClass}`}>
       <div className="predict__imageContainer">
-        <img
-          height="437"
-          width="583"
-          src={cameraImage}
-          className="predict__image"
-          alt=""
-        />
-        <input
-          type="file"
-          ref={hiddenFileInput}
-          onChange={handleFileRead}
-          encType="multipart/form-data"
-          className="imageCapture__inputfile"
-        />
-        <RefreshIcon onClick={handleClick} className="RefershIcon" />
+        <div className="predict__image">
+          <img
+            height="437"
+            width="583"
+            src={cameraImage}
+            className="predict__image"
+            alt=""
+          />
+          <input
+            type="file"
+            ref={hiddenFileInput}
+            onChange={handleFileRead}
+            encType="multipart/form-data"
+            className="imageCapture__inputfile"
+          />
+          <RefreshIcon onClick={handleClick} className="RefershIcon" />
 
-        <h3>{prediction}</h3>
+          <h3>{prediction}</h3>
+        </div>
+
       </div>
       <div className="predict__buttons">
         <Button
@@ -110,10 +115,14 @@ function Predict () {
         >
           {!prediction
             ? <img src={predictlogo} className="predictlogo" alt="logo" />
-            : ''}
+            : <ArrowBackIcon/>}
 
           {!prediction ? 'predict Image' : 'Go Back'}
+
         </Button>
+        {prediction
+          ? <Button className="predict__button"><MusicNoteOutlinedIcon/>Play Song</Button>
+          : null}
       </div>
     </div>
   );
