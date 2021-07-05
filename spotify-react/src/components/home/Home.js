@@ -8,13 +8,12 @@ import {
   setPlayingSong,
   setReload,
 } from '../../features/appSlice';
-import useAuth from '../../useAuth';
-import SearchIcon from '@material-ui/icons/Search';
+import useAuth from '../../components/useAuth';
 import './Home.css';
 import '../search/Search.css';
 
-import TrackSearchResult from '../searchResult/TrackSearchResult';
-import Songs from '../../Songs';
+import Songs from '../../components/Songs';
+import Search from '../search/Search';
 const spotifyApi = new SpotifyWebApi ({
   clientId: 'ed876f89ac4b48528b050cf012707391',
 });
@@ -24,8 +23,6 @@ function Home({code}) {
   const [track, settrack] = useState ([]);
   const [newReleases, setnewReleases] = useState ([]);
   const openSearch = useSelector (selectopenSearch);
-  const [search, setSearch] = useState ('');
-  const [searchResults, setSearchResults] = useState ([]);
   const [savedTracks, setsavedTracks] = useState ([]);
 
   const getRecentPlayedSongs = () => {
@@ -96,56 +93,6 @@ function Home({code}) {
           console.log ('Something went wrong!', err);
         }
       );
-    spotifyApi.getUserPlaylists ('Happy').then (
-      function (data) {
-        console.log ('Retrieved playlists', data.body);
-      },
-      function (err) {
-        console.log ('Something went wrong!', err);
-      }
-    );
-    spotifyApi.searchPlaylists ('happy', {limit: 5}).then (
-      function (data) {
-        const r = Math.round (Math.random () * 4);
-        console.log (r);
-        const playid = data.body.playlists.items[r].id;
-        console.log ('Found playlists are', playid);
-        spotifyApi
-          .getPlaylistTracks (playid, {
-            offset: 1,
-            limit: 20,
-            fields: 'items',
-          })
-          .then (
-            function (data) {
-              const rr = Math.round (Math.random () * 19);
-              console.log (rr);
-              const trackk = data.body.items[rr].track;
-              console.log ('The playlist contains these tracks', trackk);
-              const smallestAlbumImage = trackk.album.images.reduce (
-                (smallest, image) => {
-                  if (image.height < smallest.height) return image;
-                  return smallest;
-                },
-                trackk.album.images[0]
-              );
-              const etrack = {
-                artist: trackk.artists[0].name,
-                title: trackk.name,
-                uri: trackk.uri,
-                albumUrl: smallestAlbumImage.url,
-              };
-              dispatch (setPlayingSong (etrack));
-            },
-            function (err) {
-              console.log ('Something went wrong!', err);
-            }
-          );
-      },
-      function (err) {
-        console.log ('Something went wrong!', err);
-      }
-    );
 
     spotifyApi
       .getMyRecentlyPlayedTracks ({
@@ -180,7 +127,6 @@ function Home({code}) {
   function chooseTrack (track) {
     console.log (track);
     dispatch (setPlayingSong (track));
-    setSearch ('');
   }
 
   useEffect (
@@ -194,37 +140,6 @@ function Home({code}) {
     [accessToken]
   );
 
-  useEffect (
-    () => {
-      if (!search) return setSearchResults ([]);
-      if (!accessToken) return;
-
-      let cancel = false;
-      spotifyApi.searchTracks (search).then (res => {
-        if (cancel) return;
-        setSearchResults (
-          res.body.tracks.items.map (track => {
-            const smallestAlbumImage = track.album.images.reduce (
-              (smallest, image) => {
-                if (image.height < smallest.height) return image;
-                return image;
-              },
-              track.album.images[0]
-            );
-            return {
-              artist: track.artists[0].name,
-              title: track.name,
-              uri: track.uri,
-              albumUrl: smallestAlbumImage.url,
-            };
-          })
-        );
-      });
-
-      return () => (cancel = true);
-    },
-    [search, accessToken]
-  );
 
   return (
     <div className="home">
@@ -251,27 +166,7 @@ function Home({code}) {
               })}
             </div>
           </div>
-        : <div className="dashBoard">
-            <div className="header__middle">
-              <SearchIcon />
-              <input
-                type="search"
-                placeholder="Search Songs/Artists"
-                value={search}
-                onChange={e => setSearch (e.target.value)}
-              />
-              {/* <input placeholder="Search mail" type="text"/> */}
-            </div>
-            <div className="searchlist" style={{overflowY: 'auto'}}>
-              {searchResults.map (track => (
-                <TrackSearchResult
-                  track={track}
-                  key={track.uri}
-                  chooseTrack={chooseTrack}
-                />
-              ))}
-            </div>
-          </div>}
+        : <Search spotifyApi={spotifyApi} />}
 
     </div>
   );

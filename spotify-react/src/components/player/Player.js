@@ -14,6 +14,15 @@ export default function Player({ accessToken, trackUri }) {
       callback={state => {
         if (!state.isPlaying) setPlay(false)
       }}
+      styles={{
+        activeColor: '#fff',
+        bgColor: '#333',
+        color: '#fff',
+        loaderColor: '#fff',
+        sliderColor: '#1cb954',
+        trackArtistColor: '#ccc',
+        trackNameColor: '#fff',
+      }}
       play={play}
       uris={trackUri ? [trackUri] : []}
     />

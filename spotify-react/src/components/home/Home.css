@@ -22,9 +22,20 @@
   border-top-right-radius: 12px;
   object-fit: contain;
 }
- h3:first-child{
+.home__songs > h3 {
+  /* color: green; */
+  margin: 5px;
+  font-weight: 400 !important;
+  letter-spacing: -1px !important;
+  font-size: 30px;
+}
+h3:first-child {
   margin-top: 70px !important;
+}
+.home_songs > h5 {
+  text-align: start;
 
+  margin: 10px;
 }
 .home__recentlyPlayed {
   display: flex;
@@ -32,25 +43,27 @@
   justify-content: space-between;
   overflow-x: scroll !important;
 }
-.home__newRelease ,
-.home__savedTracks{
+.home__newRelease,
+.home__savedTracks {
   display: flex;
   align-items: center;
 
   /* justify-content: space-between; */
   overflow-x: scroll !important;
 }
-.home__savedTracks{
+.home__savedTracks {
   margin-bottom: 50px;
 }
 
 .home__recentlyPlayed::-webkit-scrollbar,
-.home__newRelease::-webkit-scrollbar,.home__savedTracks::-webkit-scrollbar {
+.home__newRelease::-webkit-scrollbar,
+.home__savedTracks::-webkit-scrollbar {
   display: none !important;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
 .home__recentlyPlayed,
-.home__newRelease ,.home__savedTracks{
+.home__newRelease,
+.home__savedTracks {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
